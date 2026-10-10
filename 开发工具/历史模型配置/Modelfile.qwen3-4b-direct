@@ -1,0 +1,20 @@
+# 基于已安装的 qwen3:4b 建立直接回答版：不插入 <think> 起始标记。
+# 不会下载或复制 4B 权重，也不会修改原 qwen3:4b。
+FROM qwen3:4b
+
+TEMPLATE """{{- if .System }}<|im_start|>system
+{{ .System }}<|im_end|>
+{{- end }}
+{{- range .Messages }}
+<|im_start|>{{ .Role }}
+{{ .Content }}<|im_end|>
+{{- end }}
+<|im_start|>assistant
+"""
+
+PARAMETER top_k 20
+PARAMETER top_p 0.8
+PARAMETER temperature 0.2
+PARAMETER repeat_penalty 1
+PARAMETER stop <|im_start|>
+PARAMETER stop <|im_end|>

@@ -1,0 +1,16 @@
+# 本地 LangChain + FAISS 学习版运行依赖
+fastapi
+uvicorn[standard]
+streamlit
+requests
+numpy
+pypdf
+python-docx
+openpyxl
+python-jose[cryptography]
+python-multipart
+langchain
+langchain-community
+langchain-text-splitters
+langchain-ollama
+faiss-cpu
